@@ -1,4 +1,4 @@
-# hello-world
+# 01-hello-world
 
 This is the ubiquitous "Hello world" script for Haskell.
 
