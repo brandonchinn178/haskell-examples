@@ -13,3 +13,7 @@ also contain comments to explain concepts in-line.
 Install [stack](https://docs.haskellstack.org/en/stable/install_and_upgrade/),
 which is the Haskell tool stack we use to run Haskell scripts, build Haskell
 projects, and manage Haskell dependencies.
+
+One handy command is `stack ghci`, which opens an interactive shell where
+you can try out Haskell expressions. It helps you see the types of expressions
+(`:t expr`) in addition to evaluating anything you input.
