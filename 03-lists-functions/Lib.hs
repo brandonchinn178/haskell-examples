@@ -90,9 +90,12 @@ pad10AndAdd = addOne . pad10
 genericPad :: Bool -> Int -> Int -> [Int] -> [Int]
 genericPad isLeft fill len = doPad -- Note that `xs` is left out in the argument list. Why does this work?
   where
-    doPad xs = if length xs < len
-      then doPad $ pad' xs
-      else xs
+    -- This function uses "guards", which allow arbitrary conditionals
+    -- in addition to pattern matching. Here, we have one branch for if
+    -- xs needs padding and another for when it's done.
+    doPad xs
+      | length xs < len = doPad $ pad' xs
+      | otherwise = xs
     pad' xs = if isLeft
       then fill:xs
       else xs ++ [fill]
