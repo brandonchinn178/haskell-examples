@@ -29,6 +29,8 @@ addOne l = 1:l
 -- usually denote functions that do similar actions. This function
 -- can be read "add one prime".
 addOne' :: [Int] -> [Int]
+-- Note: `error` is bad style. There are better ways of handling this
+-- case, but for simplicity/learning, we'll use `error` here.
 addOne' [] = error "Cannot run addOne' on an empty list"
 -- x:xs is a common idiom for pattern matching on lists
 addOne' (x:xs) = x:1:xs
@@ -47,14 +49,23 @@ pad10 xs = if length xs < 10
 -- You might ask why we use arrows to separate both the arguments
 -- and the return value. You can also think about this function
 -- as taking an `Int` and returning *another function* of type
--- `[Int] -> [Int]`
+-- `[Int] -> [Int]`. In other words, this type signature is the
+-- same as `Int -> ([Int] -> [Int])`.
+--
+-- This is called "currying", where functions take in a single input
+-- and return another function. In Haskell, this is considered good
+-- practice and is used pervasively. See the next function for a good
+-- application of curried functions.
 pad :: Int -> [Int] -> [Int]
 pad len xs = if length xs < len
   then pad len $ 0:xs
   else xs
 
 -- `pad10` can also be written in terms of pad. Here, we demonstate
--- "currying", which basically means partially applying a function.
+-- the advantages of "currying". Since `pad` can be thought of as a
+-- function that takes in a single input and returns another function,
+-- we can partially apply it to one parameter and save the resulting
+-- function to `pad10'`.
 --
 -- Remember that `pad` is of type `Int -> [Int] -> [Int]`.
 -- So giving it just `10` will give `pad 10` the type `[Int] -> [Int]`

@@ -25,6 +25,9 @@ main = do
   putStr "Using $: "
   -- The `$` operator takes everything on the right as the last argument
   -- for the part on the left. `a $ b $ c $ d` is the same as `a (b (c d))`.
+  --
+  -- Note that this operator isn't a Haskell builtin. It's an actual function
+  -- with the type `(a -> b) -> a -> b`.
   print $ [1,2,3]
 
   putStr "Using the list constructor: "

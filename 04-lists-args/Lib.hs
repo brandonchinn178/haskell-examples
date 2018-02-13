@@ -25,6 +25,10 @@ unsafeParse args = map read args -- Note: this can also be written
 -- This function will throw out all non-numbers in the given list
 -- before calling `read`, guaranteeing that `read` won't fail.
 --
+-- This function could also have been defined with `reads`, which
+-- is a safe alternative to `read`. (Usage:
+-- `reads "13" :: [(Int, String)]`).
+--
 -- Note: will not work with negative numbers.
 safeParse :: [String] -> [Int]
 safeParse = unsafeParse . filter (all isDigit)
